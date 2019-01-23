@@ -3,24 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class AppLocalizations {
-  final Locale locale;
+  Locale locale;
 
   AppLocalizations(this.locale);
 
   // 初始化对照表
   static Map<String, Map<String, String>> _localizedValues = {
-    'en': {
-      "title": 'english',
-    },
-    "zh": {"title": '中文'}
+    'en': {"title": 'english', "btn": 'Button'},
+    "zh": {"title": '中文', "btn": "按钮"}
   };
+
   get title {
-    print('title--------');
+    print('project title');
     return _localizedValues[locale.languageCode]['title'];
   }
 
-  _t (String key) {
-    return _localizedValues[locale.languageCode][key];
+  static get languageCode => _inst.locale.languageCode;
+
+  _t(String key) {
+    print('key:  $key');
+    return _localizedValues[locale.languageCode][key] ?? '';
+  }
+
+  static AppLocalizationsDelegate changeLanguage(Locale locale) {
+    print('change -> $locale');
+    _inst.locale = locale;
+    return AppLocalizationsDelegate(locale);
   }
 
   static AppLocalizations _inst;
@@ -41,16 +49,22 @@ class AppLocalizations {
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+  final Locale locale;
+
+  const AppLocalizationsDelegate([this.locale]);
+
   @override
   bool isSupported(Locale locale) {
-    print('locale  -> ' + locale.toString());
+    print('isSupported  -> ' + locale.toString());
     return ['zh', 'en'].contains(locale.languageCode);
   }
 
   @override
-  Future<AppLocalizations> load(Locale locale) {
+  Future<AppLocalizations> load(Locale _locale) {
+    print('load  ->  $_locale ${this.locale}');
+    print(this.locale ?? _locale);
     return new SynchronousFuture<AppLocalizations>(
-        new AppLocalizations(locale));
+        new AppLocalizations(this.locale ?? _locale));
   }
 
   @override
