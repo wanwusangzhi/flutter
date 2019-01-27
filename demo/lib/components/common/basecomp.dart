@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:demo/i18n/location.dart';
+import 'package:demo/i18n/index.dart';
 
 class BaseComp extends StatelessWidget {
   final List<dynamic> contentList;

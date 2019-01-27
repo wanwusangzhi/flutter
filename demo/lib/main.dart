@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; // 国际化
-import 'package:demo/i18n/location.dart';
+import 'package:demo/i18n/index.dart';
 import 'package:demo/components/common/basecomp.dart';
 
 
@@ -17,9 +17,8 @@ class FirstPage extends StatelessWidget {
       ),
       child: Center(
         child: RaisedButton(
-          child: Text(AppLocalizations.$t('title')),
+          child: Text(AppLocalizations.$t('nav.title')),
           onPressed: () {
-            print('-----');
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return SecondPage();
             }));
@@ -33,14 +32,25 @@ class FirstPage extends StatelessWidget {
 class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.$t('title')),
-      ),
-      body: Center(
-        child: Text(AppLocalizations.$t('btn')),
-      ),
-    );
+    return
+      Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.$t('nav.title')),
+        ),
+        body: Center(
+          child: Row(
+            children: <Widget>[
+              RaisedButton(
+                child: Text('changLanguage'),
+                onPressed: () {
+                  AppLocalizations.changeLanguage(null);
+                }
+              ),
+              Text(AppLocalizations.$t('title'))
+            ],
+          ),
+        ),
+      );
   }
 }
 
@@ -62,14 +72,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateTitle: (context) {
-        print('------');
-        print(context);
-        return AppLocalizations.of(context).title;
+        return AppLocalizations.of(context, setState, _delegate).title;
       },
       localizationsDelegates: [
-        _delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        _delegate,
       ],
       supportedLocales: [
         Locale('zh', 'CH'),
@@ -86,12 +94,9 @@ class _MyAppState extends State<MyApp> {
           RaisedButton(
             child: Text('btn'),
             onPressed: () {
-              print('-----');
               print(AppLocalizations.languageCode);
               Locale locale = AppLocalizations.languageCode == 'zh' ? Locale('en', "US") : Locale("zh", "CH");
-              setState(() {
-                _delegate = AppLocalizations.changeLanguage(locale);
-              });
+              AppLocalizations.changeLanguage(locale);
             },
           )
         ],
