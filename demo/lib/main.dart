@@ -2,57 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart'; // 国际化
 import 'package:demo/i18n/index.dart';
 import 'package:demo/components/common/basecomp.dart';
-
-
-class FirstPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100.0,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: Colors.purple,
-        ),
-      ),
-      child: Center(
-        child: RaisedButton(
-          child: Text(AppLocalizations.$t('nav.title')),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SecondPage();
-            }));
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return
-      Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.$t('nav.title')),
-        ),
-        body: Center(
-          child: Row(
-            children: <Widget>[
-              RaisedButton(
-                child: Text('changLanguage'),
-                onPressed: () {
-                  AppLocalizations.changeLanguage(null);
-                }
-              ),
-              Text(AppLocalizations.$t('title'))
-            ],
-          ),
-        ),
-      );
-  }
-}
+import 'package:demo/pages/NavigateDemo.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -83,22 +33,13 @@ class _MyAppState extends State<MyApp> {
         Locale('zh', 'CH'),
         Locale('en', 'US'),
       ],
-      // title: AppLocalizations.of(context).title,
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
       home: BaseComp(
         title: 'title',
         contentList: [
-          FirstPage(),
-          RaisedButton(
-            child: Text('btn'),
-            onPressed: () {
-              print(AppLocalizations.languageCode);
-              Locale locale = AppLocalizations.languageCode == 'zh' ? Locale('en', "US") : Locale("zh", "CH");
-              AppLocalizations.changeLanguage(locale);
-            },
-          )
+          FirstPage()
         ],
       ),
     );

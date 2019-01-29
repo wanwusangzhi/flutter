@@ -13,20 +13,28 @@ class BaseComp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(AppLocalizations.$t(this.title));
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.$t(this.title)),
       ),
       body: Container(
-        child: ListView(
-          children: <Widget>[
-          Column(
-            children: _render(),
-          ),
-        ]),
+        child: this.getComp(),
       ),
     );
+  }
+  /// 
+  /// 判断组件长度
+  /// 
+  Widget getComp () {
+    if (this.contentList.length <=1) {
+      return this.contentList[0];
+    }
+    return ListView(
+      children: <Widget>[
+      Column(
+        children: _render(),
+      ),
+    ]);
   }
 
   List<Widget> _render() {

@@ -37,7 +37,7 @@ class AppLocalizations {
     var retValue = '';
     try {
       _array.forEach((item) {
-        print(_dict[item].runtimeType);
+        // print(_dict[item].runtimeType);
         if (_dict[item].runtimeType == Null) {
           retValue = key;
           return ;
@@ -89,7 +89,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   bool shouldReload(LocalizationsDelegate<AppLocalizations> old) {
-    print('locale shouldReload -> ' + old.toString());
+    // print('locale shouldReload -> ' + old.toString());
     return false;
   }
 

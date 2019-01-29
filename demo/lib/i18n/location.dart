@@ -7,11 +7,17 @@ const LANGUAGE_JSON = {
   'en': {
     "title": 'english',
     "btn": 'Button',
-    'nav': {"title": 'navigation'}
+    'nav': {"title": 'navigation'},
+    "httpdemo" :{
+      "title":'dio request demo'
+    }
   },
   "zh": {
     "title": '中文',
     "btn": "按钮",
-    'nav': {"title": '导航'}
+    'nav': {"title": '导航'},
+    "httpdemo" :{
+      "title":'dio 请求示例'
+    }
   }
 };
