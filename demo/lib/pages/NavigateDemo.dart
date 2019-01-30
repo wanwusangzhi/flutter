@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:demo/components/common/basecomp.dart';
 import 'package:demo/i18n/index.dart';
 import 'package:demo/pages/HttpDemo.dart';
+import 'package:demo/pages/HttpClientDemo.dart';
 
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.0,
+      height: 500.0,
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
@@ -30,6 +31,14 @@ class FirstPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return HttpDemo();
+                }));
+              },
+            ),
+            RaisedButton(
+              child: Text("test Client",textDirection: TextDirection.ltr,),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HttpClientDemo();
                 }));
               },
             ),

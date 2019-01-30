@@ -1,13 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:demo/i18n/location.dart';
+import 'package:flutter/services.dart';
 
 class AppLocalizations {
   Locale _locale; // language
   Function _setState; // setState
   AppLocalizationsDelegate _delegate;
+  Map<String, dynamic> jsonLanguage;
   static AppLocalizations _inst; // inst
 
   AppLocalizations(this._locale);
@@ -37,7 +38,6 @@ class AppLocalizations {
     var retValue = '';
     try {
       _array.forEach((item) {
-        // print(_dict[item].runtimeType);
         if (_dict[item].runtimeType == Null) {
           retValue = key;
           return ;
@@ -83,13 +83,15 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   Future<AppLocalizations> load(Locale _locale) {
+    this.locale ?? _locale;
+    print(this.locale);
+    // AssetBundle.loadString('locale/${this.locale}', true);
     return new SynchronousFuture<AppLocalizations>(
-        new AppLocalizations(this.locale ?? _locale));
+        new AppLocalizations(this.locale));
   }
 
   @override
   bool shouldReload(LocalizationsDelegate<AppLocalizations> old) {
-    // print('locale shouldReload -> ' + old.toString());
     return false;
   }
 
