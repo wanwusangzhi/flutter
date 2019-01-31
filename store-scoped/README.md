@@ -1,10 +1,8 @@
 # flutter scoped demo
 
-------
 ## 概要
 基于flutter官方文档，接入scoped练习。
 
-------
 ## 架构
 ```
 |--main.dart                // 主入口
@@ -18,7 +16,7 @@
 |--store                    // 数据层目录
     --index.dart            // model主入口
 ```
-------
+
 ## 实现
 
 #### 1. pubspec.yaml中添加scoped_model
