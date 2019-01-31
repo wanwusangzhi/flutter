@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'dart:io';
-import 'package:demo/config/Index.dart';
+import 'package:demo/config/index.dart';
 
 class ApiHttp {
   constructor() {}
@@ -8,7 +8,6 @@ class ApiHttp {
 
   static getHttp([options]) {
     if (ApiHttp.apiDio != null) {
-      print('return instance');
       return ApiHttp.apiDio;
     }
     // create instance
@@ -16,12 +15,10 @@ class ApiHttp {
     // proxy
     dio.onHttpClientCreate = (HttpClient client) {
       // client.findProxy = (uri) {
-      // print(Index.proxyUrl);
-      // return Index.proxyUrl;
+      //   print(Index.proxyUrl);
+      //   return Index.proxyUrl;
       // };
     };
-    
-    print('create instance');
     ApiHttp.apiDio = dio;
     return dio;
   }
@@ -33,9 +30,7 @@ class ApiHttp {
     } else {
       response = await ApiHttp.getHttp().post(url, data: data);
     }
-    print(response.headers);
-    print(response.data.toString());
-    return response;
+    return response.data;
   }
 
   // dio.post('/test', data: {id:'123'})

@@ -1,0 +1,18 @@
+{
+  "sopportLanguage": {
+    "zh": {
+      "code": "zh",
+      "country_code": "CH"
+    },
+    "en": {
+      "code": "en",
+      "country_code": "US"
+    }
+  },
+  "defualtLanguage": {
+    "zh": {
+      "code": "zh",
+      "country_code": "CH"
+    }
+  }
+}

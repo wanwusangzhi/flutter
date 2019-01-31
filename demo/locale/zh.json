@@ -1,0 +1,15 @@
+{
+  "zh": "switch to English",
+  "title": "你好 Flutter",
+  "btn": "按钮",
+  "nav": {
+    "title": "设置语言"
+  },
+  "httpdemo": {
+    "title": "dio 请求示例"
+  },
+  "clientDemo": {
+    "title": "HttpClient 测试页",
+    "btn": "HttpClient 请求示例"
+  }
+}

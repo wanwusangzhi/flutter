@@ -22,19 +22,22 @@ class BaseComp extends StatelessWidget {
       ),
     );
   }
-  /// 
+
+  ///
   /// 判断组件长度
-  /// 
-  Widget getComp () {
-    if (this.contentList.length <=1) {
+  ///
+  Widget getComp() {
+    if (this.contentList.length <= 1) {
       return this.contentList[0];
     }
     return ListView(
       children: <Widget>[
-      Column(
-        children: _render(),
-      ),
-    ]);
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          children: _render(),
+        ),
+      ],
+    );
   }
 
   List<Widget> _render() {

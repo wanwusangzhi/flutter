@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:demo/components/common/basecomp.dart';
 import 'package:demo/store/ApiHttpClient.dart';
 import 'package:demo/store/model/movie.dart';
+import 'package:demo/i18n/index.dart';
 
 class HttpClientDemo extends StatefulWidget {
   @override
@@ -24,6 +25,7 @@ class HttpClientDemoState extends State<HttpClientDemo> {
       htmlStr = _future.toString();
     });
   }
+
   _getClientJSON() async {
     var _future = await ApiHttpClient.getJSON(
         url: 'api.douban.com',
@@ -41,7 +43,7 @@ class HttpClientDemoState extends State<HttpClientDemo> {
   @override
   Widget build(BuildContext context) {
     return BaseComp(
-      title: "asd",
+      title: AppLocalizations.$t('clientDemo.title'),
       contentList: [
         Container(
           height: 300,
@@ -54,9 +56,18 @@ class HttpClientDemoState extends State<HttpClientDemo> {
           },
         ),
         RaisedButton(
-          child: Text('访问Api JSON数据'),
+          child: Text('httpclient request json data'),
           onPressed: () {
             _getClientJSON();
+          },
+        ),
+        RaisedButton(
+          child: Text(
+            "change language",
+            textDirection: TextDirection.ltr,
+          ),
+          onPressed: () {
+            AppLocalizations.changeLanguage();
           },
         ),
       ],

@@ -8,10 +8,9 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500.0,
       decoration: BoxDecoration(
         border: Border.all(
-          width: 1,
+          width: 10,
           color: Colors.purple,
         ),
       ),
@@ -35,7 +34,7 @@ class FirstPage extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: Text("test Client",textDirection: TextDirection.ltr,),
+              child: Text(AppLocalizations.$t('clientDemo.btn'),),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return HttpClientDemo();
@@ -57,7 +56,7 @@ class SecondPage extends StatelessWidget {
         child: Row(
           children: <Widget>[
             RaisedButton(
-                child: Text('changLanguage'),
+                child: Text(AppLocalizations.$t(AppLocalizations.languageCode)),
                 onPressed: () {
                   AppLocalizations.changeLanguage(null);
                 }),

@@ -1,0 +1,15 @@
+{
+  "en": "切换为中文",
+  "title": "Hello Flutter",
+  "btn": "Button",
+  "nav": {
+    "title": "Setting Language"
+  },
+  "httpdemo": {
+    "title": "dio request demo"
+  },
+  "clientDemo": {
+    "title": "HttpClient request test page",
+    "btn": "HttpClient request demo"
+  }
+}
