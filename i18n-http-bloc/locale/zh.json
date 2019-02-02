@@ -11,5 +11,9 @@
   "clientDemo": {
     "title": "HttpClient 测试页",
     "btn": "HttpClient 请求示例"
+  },
+  "storeDemo": {
+    "title": "Store 示例",
+    "title2": "Store 示例方法二"
   }
 }

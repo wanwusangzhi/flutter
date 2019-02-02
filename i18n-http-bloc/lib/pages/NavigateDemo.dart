@@ -3,7 +3,11 @@ import 'package:demo/components/common/basecomp.dart';
 import 'package:demo/i18n/index.dart';
 import 'package:demo/pages/HttpDemo.dart';
 import 'package:demo/pages/HttpClientDemo.dart';
+import 'package:demo/pages/storeDemo.dart';
 
+///
+/// 首页
+///
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,6 +38,14 @@ class FirstPage extends StatelessWidget {
                   return HttpClientDemo();
                 }));
               },
+            ),
+            RaisedButton(
+              child: Text(AppLocalizations.$t('storeDemo.title')),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return StoreDemo();
+                },));
+              }
             ),
           ],
         ),

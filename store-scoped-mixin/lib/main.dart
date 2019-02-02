@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+// 国际化
 import 'package:flutter_localizations/flutter_localizations.dart'; // 国际化
 import 'package:demo/i18n/index.dart';
-import 'package:demo/i18n/config.dart';
+// 基础组件
 import 'package:demo/components/common/basecomp.dart';
-import 'package:demo/pages/NavigateDemo.dart';
+// 数据层
 import 'package:demo/store/index.dart';
+import 'package:demo/pages/NavigateDemo.dart';
+import 'package:demo/utils/file/file-reader.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -18,6 +21,14 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _delegate = AppLocalizationsDelegate();
+    init();
+  }
+  void init() async {
+    String value = await FileReaderUtil.readValueByKey('locale.json', 'locale');
+    if (value != null) {
+      print("locale language = $value");
+      AppLocalizations.changeLanguage(Locale(value));
+    }
   }
 
   @override

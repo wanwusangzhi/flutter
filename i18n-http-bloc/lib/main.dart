@@ -22,8 +22,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localeResolutionCallback: (deviceLocale, supportLocale ) {
-        Locale _locale = supportLocale.contains(deviceLocale) ? deviceLocale : Locale('en');
+      localeResolutionCallback: (deviceLocale, supportLocale) {
+        Locale _locale =
+            supportLocale.contains(deviceLocale) ? deviceLocale : Locale('en');
         return _locale;
       },
       onGenerateTitle: (context) {
@@ -42,9 +43,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: BaseComp(
         title: 'title',
-        contentList: [
-          FirstPage()
-        ],
+        contentList: [FirstPage()],
       ),
     );
   }

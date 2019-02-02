@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:demo/i18n/config.dart';
+import 'package:demo/utils/file/file-reader.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class AppLocalizations {
@@ -21,7 +21,8 @@ class AppLocalizations {
   }
 
   // 设置语言切换代理
-  static void setProxy(Function setState, AppLocalizationsDelegate delegate) async {
+  static void setProxy(
+      Function setState, AppLocalizationsDelegate delegate) async {
     _setState = setState;
     _delegate = delegate;
   }
@@ -33,8 +34,8 @@ class AppLocalizations {
     print(_tmpLocale.languageCode);
     String jsonLang;
     try {
-      jsonLang = await rootBundle
-          .loadString('locale/${_tmpLocale.languageCode}.json');
+      jsonLang =
+          await rootBundle.loadString('locale/${_tmpLocale.languageCode}.json');
     } catch (e) {
       _inst._locale = Locale(ConfigLanguage.defualtLanguage.code);
       jsonLang = await rootBundle
@@ -44,6 +45,7 @@ class AppLocalizations {
     jsonLanguage = json.decode(jsonLang);
     print("当前语言： ${_inst._locale}");
     print("Json数据： ${jsonLanguage}");
+    FileReaderUtil.writeJsonFile('locale.json', {"locale": _inst._locale.languageCode});
   }
 
   static void changeLanguage([Locale locale]) {
@@ -51,6 +53,10 @@ class AppLocalizations {
       locale = AppLocalizations.languageCode == 'zh'
           ? Locale('en', "US")
           : Locale("zh", "CH");
+    }
+    if (_inst._locale.languageCode == locale.languageCode) {
+      print('语言相同 不需要切换');
+      return;
     }
     _inst._locale = locale;
     getLanguageJson(); // 根据语言获取对应的国际化文件
@@ -90,14 +96,17 @@ class AppLocalizations {
     return _inst._t(key);
   }
 }
+
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   final Locale locale;
 
-  AppLocalizationsDelegate ([this.locale]);
+  AppLocalizationsDelegate([this.locale]);
 
   @override
   bool isSupported(Locale locale) {
-    return ConfigLanguage.sopportLanguage.keys.toList().contains(locale.languageCode);
+    return ConfigLanguage.sopportLanguage.keys
+        .toList()
+        .contains(locale.languageCode);
   }
 
   @override
@@ -111,4 +120,18 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
     // false时 不执行上述重写函数
     return false;
   }
+}
+
+class ConfigLanguage {
+  static List<Locale> supportedLocales = [
+    Locale('zh', 'CH'),
+    Locale('en', 'US'),
+  ];
+
+  static Map<String, dynamic> sopportLanguage = {
+    "zh": {"code": "zh", "country_code": "CH"},
+    "en": {"code": "en", "country_code": "US"}
+  };
+
+  static dynamic defualtLanguage = {"code": "zh", "country_code": "CH"};
 }

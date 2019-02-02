@@ -11,5 +11,9 @@
   "clientDemo": {
     "title": "HttpClient request test page",
     "btn": "HttpClient request demo"
+  },
+  "storeDemo": {
+    "title": "Store Demo",
+    "title2": "Store Demo Method 2"
   }
 }
