@@ -16,6 +16,10 @@ class AppStore {
       child: child,
     );
   }
+
+  /* 
+   * 通过connect后返回ScopedModelDescendant
+   */
   static connect ({
     builder,
     child,

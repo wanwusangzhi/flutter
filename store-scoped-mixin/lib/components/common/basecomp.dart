@@ -17,9 +17,7 @@ class BaseComp extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.$t(this.title)),
       ),
-      body: Container(
-        child: this.getComp(),
-      ),
+      body: this.getComp(),
     );
   }
 

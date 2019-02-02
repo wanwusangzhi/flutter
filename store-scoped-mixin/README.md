@@ -293,3 +293,8 @@ class StoreDemoMethod2 extends StatelessWidget {
 }
 
 ```
+
+
+#### 11. 优化代码，通过connect连接ScopedModelDescendant.
+> * final countModel = MainStateModel.of(context);
+> * 在MainStateModel类中重写of方法，覆盖ScopedModel中的of方法，主要重写rebuildOnChange为true,使得修改的数据能及时在页面中刷新。
